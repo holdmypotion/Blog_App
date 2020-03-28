@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'base_layout.html' %}
 
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <title>HomePage</title>
-  </head>
-  <body>
-    <h1>This the home page</h1>
-    <p>Welcome home fella's</p>
-  </body>
-</html>
+{% block content %}
+  <h1>This the home page</h1>
+  <p>Welcome home fella's</p>
+{% endblock %}
