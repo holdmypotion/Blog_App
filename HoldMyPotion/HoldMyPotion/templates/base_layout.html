@@ -10,8 +10,22 @@
   <body>
     <div class="wrapper">
       <h1><a href="{% url 'app:list' %}">
-        <img src="{% static 'logo.png' %}" alt="LOGO" /> 
+        <img src="{% static 'logo.png' %}" alt="LOGO" />
       </a></h1>
+      <nav>
+        <ul>
+          <li>
+            <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+            </form>
+            <form class="create-link" action="{% url 'app:create' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" name="button">Create</button>
+            </form>
+          </li>
+        </ul>
+      </nav>
       {% block content %}
       {% endblock %}
     </div>
