@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.models import Article
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
+from . import forms
 
 def article_list(request):
     """Returns the list of all the articles"""
@@ -22,7 +23,16 @@ def article_detail(request, slug):
         {'article': article}
     )
 
-@login_required(login_url='/accounts/login')
+@login_required(login_url="/accounts/login")
 def article_create(request):
     """Creates the article"""
-    return render(request, 'articles/article_create.html')
+    if request.method == 'POST':
+        form = forms.CreateArticle(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            return redirect('app:list')
+    else:
+        form = forms.CreateArticle()
+    return render(request, 'articles/article_create.html', {'form': form})
