@@ -7,4 +7,4 @@ class CreateArticle(forms.ModelForm):
     """Form field to create an article through front-end"""
     class Meta:
         model = models.Article
-        fields = ['title', 'slug', 'body', 'thumb']
+        fields = ['title','body', 'slug', 'thumb',]

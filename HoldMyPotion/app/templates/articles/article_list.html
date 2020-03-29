@@ -9,10 +9,9 @@
           <a href="{% url 'app:article_detail' article.slug %}">{{ article.title }}
           </a>
         </h2>
-        <ul>
-          <p>{{ article.snippet }}</p>
-          <p>{{ article.date }}</p>
-        </ul>
+        <p>{{ article.snippet }}</p>
+        <p>{{ article.date }}</p>
+        <p class="author">{{ article.author }}</p>
       </div>
     {% endfor %}
   </div>
